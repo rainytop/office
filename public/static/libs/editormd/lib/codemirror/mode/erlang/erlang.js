@@ -210,7 +210,7 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
       }else if (is_member(w,operatorAtomWords)) {
         return rval(state,stream,"operator");
       }else if (stream.match(/\s*\(/,false)) {
-        // 'put' and 'erlang:put' are bifs, 'foo:put' is not
+        // 'put' and 'erlang:put' are bifs, 'nongye:put' is not
         if (is_member(w,bifWords) &&
             ((peekToken(state).token != ":") ||
              (peekToken(state,2).token == "erlang"))) {

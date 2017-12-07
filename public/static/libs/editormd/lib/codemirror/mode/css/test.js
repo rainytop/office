@@ -16,65 +16,65 @@
 
   // Make sure nesting works with media queries
   MT("atMediaMaxWidthNested",
-     "[def @media] [attribute screen] [keyword and] ([property max-width]: [number 25px]) { [tag foo] { } }");
+     "[def @media] [attribute screen] [keyword and] ([property max-width]: [number 25px]) { [tag nongye] { } }");
 
   MT("tagSelector",
-     "[tag foo] { }");
+     "[tag nongye] { }");
 
   MT("classSelector",
-     "[qualifier .foo-bar_hello] { }");
+     "[qualifier .nongye-bar_hello] { }");
 
   MT("idSelector",
-     "[builtin #foo] { [error #foo] }");
+     "[builtin #nongye] { [error #nongye] }");
 
   MT("tagSelectorUnclosed",
-     "[tag foo] { [property margin]: [number 0] } [tag bar] { }");
+     "[tag nongye] { [property margin]: [number 0] } [tag bar] { }");
 
   MT("tagStringNoQuotes",
-     "[tag foo] { [property font-family]: [variable hello] [variable world]; }");
+     "[tag nongye] { [property font-family]: [variable hello] [variable world]; }");
 
   MT("tagStringDouble",
-     "[tag foo] { [property font-family]: [string \"hello world\"]; }");
+     "[tag nongye] { [property font-family]: [string \"hello world\"]; }");
 
   MT("tagStringSingle",
-     "[tag foo] { [property font-family]: [string 'hello world']; }");
+     "[tag nongye] { [property font-family]: [string 'hello world']; }");
 
   MT("tagColorKeyword",
-     "[tag foo] {",
+     "[tag nongye] {",
      "  [property color]: [keyword black];",
      "  [property color]: [keyword navy];",
      "  [property color]: [keyword yellow];",
      "}");
 
   MT("tagColorHex3",
-     "[tag foo] { [property background]: [atom #fff]; }");
+     "[tag nongye] { [property background]: [atom #fff]; }");
 
   MT("tagColorHex6",
-     "[tag foo] { [property background]: [atom #ffffff]; }");
+     "[tag nongye] { [property background]: [atom #ffffff]; }");
 
   MT("tagColorHex4",
-     "[tag foo] { [property background]: [atom&error #ffff]; }");
+     "[tag nongye] { [property background]: [atom&error #ffff]; }");
 
   MT("tagColorHexInvalid",
-     "[tag foo] { [property background]: [atom&error #ffg]; }");
+     "[tag nongye] { [property background]: [atom&error #ffg]; }");
 
   MT("tagNegativeNumber",
-     "[tag foo] { [property margin]: [number -5px]; }");
+     "[tag nongye] { [property margin]: [number -5px]; }");
 
   MT("tagPositiveNumber",
-     "[tag foo] { [property padding]: [number 5px]; }");
+     "[tag nongye] { [property padding]: [number 5px]; }");
 
   MT("tagVendor",
-     "[tag foo] { [meta -foo-][property box-sizing]: [meta -foo-][atom border-box]; }");
+     "[tag nongye] { [meta -nongye-][property box-sizing]: [meta -nongye-][atom border-box]; }");
 
   MT("tagBogusProperty",
-     "[tag foo] { [property&error barhelloworld]: [number 0]; }");
+     "[tag nongye] { [property&error barhelloworld]: [number 0]; }");
 
   MT("tagTwoProperties",
-     "[tag foo] { [property margin]: [number 0]; [property padding]: [number 0]; }");
+     "[tag nongye] { [property margin]: [number 0]; [property padding]: [number 0]; }");
 
   MT("tagTwoPropertiesURL",
-     "[tag foo] { [property background]: [atom url]([string //example.com/foo.png]); [property padding]: [number 0]; }");
+     "[tag nongye] { [property background]: [atom url]([string //example.com/nongye.png]); [property padding]: [number 0]; }");
 
   MT("commentSGML",
      "[comment <!--comment-->]");
@@ -92,20 +92,20 @@
 
   MT("indent_atMedia",
      "[def @media] {",
-     "  [tag foo] {",
+     "  [tag nongye] {",
      "    [property color]:",
      "      [keyword yellow];",
      "  }",
      "}");
 
   MT("indent_comma",
-     "[tag foo] {",
+     "[tag nongye] {",
      "  [property font-family]: [variable verdana],",
      "    [atom sans-serif];",
      "}");
 
   MT("indent_parentheses",
-     "[tag foo]:[variable-3 before] {",
+     "[tag nongye]:[variable-3 before] {",
      "  [property background]: [atom url](",
      "[string     blahblah]",
      "[string     etc]",
@@ -117,14 +117,14 @@
      "  [property font-family]: [string 'myfont'];",
      "  [error nonsense]: [string 'abc'];",
      "  [property src]: [atom url]([string http://blah]),",
-     "    [atom url]([string http://foo]);",
+     "    [atom url]([string http://nongye]);",
      "}");
 
   MT("empty_url",
      "[def @import] [tag url]() [tag screen];");
 
   MT("parens",
-     "[qualifier .foo] {",
+     "[qualifier .nongye] {",
      "  [property background-image]: [variable fade]([atom #000], [number 20%]);",
      "  [property border-image]: [atom linear-gradient](",
      "    [atom to] [atom bottom],",
@@ -137,7 +137,7 @@
      ":[variable-3 root] {",
      "  [variable-2 --main-color]: [atom #06c];",
      "}",
-     "[tag h1][builtin #foo] {",
+     "[tag h1][builtin #nongye] {",
      "  [property color]: [atom var]([variable-2 --main-color]);",
      "}");
 
@@ -154,7 +154,7 @@
       "    [builtin #id] {",
       "      [property background-color]: [keyword white];",
       "    }",
-      "    [tag foo] {",
+      "    [tag nongye] {",
       "      [property font-family]: [variable Verdana], [atom sans-serif];",
       "    }",
       "  }");
@@ -166,7 +166,7 @@
       "[def @document] [tag url-prefix]([string https://]) { [builtin #id] { } }");
 
    MT("document_domain",
-      "[def @document] [tag domain]([string blah.com]) { [tag foo] { } }");
+      "[def @document] [tag domain]([string blah.com]) { [tag nongye] { } }");
 
    MT("document_regexp",
       "[def @document] [tag regexp]([string \".*blah.+\"]) { [builtin #id] { } }");

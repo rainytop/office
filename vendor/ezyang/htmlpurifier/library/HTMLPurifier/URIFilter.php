@@ -4,8 +4,8 @@
  * Chainable filters for custom URI processing.
  *
  * These filters can perform custom actions on a URI filter object,
- * including transformation or blacklisting.  A filter named Foo
- * must have a corresponding configuration directive %URI.Foo,
+ * including transformation or blacklisting.  A filter named nongye
+ * must have a corresponding configuration directive %URI.nongye,
  * unless always_load is specified to be true.
  *
  * The following contexts may be available while URIFilters are being
@@ -42,8 +42,8 @@ abstract class HTMLPurifier_URIFilter
 
     /**
      * True if this filter should always be loaded.
-     * This permits a filter to be named Foo without the corresponding
-     * %URI.Foo directive existing.
+     * This permits a filter to be named nongye without the corresponding
+     * %URI.nongye directive existing.
      * @type bool
      */
     public $always_load = false;

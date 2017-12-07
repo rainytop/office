@@ -6,10 +6,10 @@
   function MT(name) { test.mode(name, mode, Array.prototype.slice.call(arguments, 1)); }
 
   MT("word",
-     "foo");
+     "nongye");
 
   MT("twoWords",
-     "foo bar");
+     "nongye bar");
 
   MT("beginEndDocument",
      "[tag \\begin][bracket {][atom document][bracket }]",
@@ -36,7 +36,7 @@
      "[tag \\PSforPDF][bracket [[][atom 1][bracket ]]{]#1[bracket }]");
 
   MT("comment",
-     "[comment % foo]");
+     "[comment % nongye]");
 
   MT("tagComment",
      "[tag \\item][comment % bar]");
@@ -46,7 +46,7 @@
 
   MT("commentLineBreak",
      "[comment %]",
-     "foo");
+     "nongye");
 
   MT("tagErrorCurly",
      "[tag \\begin][error }][bracket {]");
@@ -70,7 +70,7 @@
      "L [tag \\&] N");
 
   MT("tagUnderscore",
-     "foo[tag \\_]bar");
+     "nongye[tag \\_]bar");
 
   MT("tagBracketOpen",
      "[tag \\emph][bracket {][tag \\{][bracket }]");

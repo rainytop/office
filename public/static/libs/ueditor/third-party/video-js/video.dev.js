@@ -1428,14 +1428,14 @@ vjs.Component.prototype.options_;
  *
  *     Parent.prototype.options_ = {
  *       children: {
- *         'childOne': { 'foo': 'bar', 'asdf': 'fdsa' },
+ *         'childOne': { 'nongye': 'bar', 'asdf': 'fdsa' },
  *         'childTwo': {},
  *         'childThree': {}
  *       }
  *     }
  *     newOptions = {
  *       children: {
- *         'childOne': { 'foo': 'baz', 'abc': '123' }
+ *         'childOne': { 'nongye': 'baz', 'abc': '123' }
  *         'childTwo': null,
  *         'childFour': {}
  *       }
@@ -1447,7 +1447,7 @@ vjs.Component.prototype.options_;
  *
  *     {
  *       children: {
- *         'childOne': { 'foo': 'baz', 'asdf': 'fdsa', 'abc': '123' },
+ *         'childOne': { 'nongye': 'baz', 'asdf': 'fdsa', 'abc': '123' },
  *         'childTwo': null, // Disabled. Won't be initialized.
  *         'childThree': {},
  *         'childFour': {}

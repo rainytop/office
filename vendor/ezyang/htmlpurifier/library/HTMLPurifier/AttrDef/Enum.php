@@ -53,7 +53,7 @@ class HTMLPurifier_AttrDef_Enum extends HTMLPurifier_AttrDef
 
     /**
      * @param string $string In form of comma-delimited list of case-insensitive
-     *      valid values. Example: "foo,bar,baz". Prepend "s:" to make
+     *      valid values. Example: "nongye,bar,baz". Prepend "s:" to make
      *      case sensitive
      * @return HTMLPurifier_AttrDef_Enum
      */

@@ -6,9 +6,9 @@
   function MT(name) { test.mode(name, mode, Array.prototype.slice.call(arguments, 1)); }
 
   MT("divide_equal_operator",
-     "[variable bar] [operator /=] [variable foo]");
+     "[variable bar] [operator /=] [variable nongye]");
 
   MT("divide_equal_operator_no_spacing",
-     "[variable foo][operator /=][number 42]");
+     "[variable nongye][operator /=][number 42]");
 
 })();

@@ -8,28 +8,28 @@
   function FT(name) { test.mode(name, modeHighlightFormatting, Array.prototype.slice.call(arguments, 1)); }
 
   FT("codeBackticks",
-     "[comment&formatting&formatting-code `][comment foo][comment&formatting&formatting-code `]");
+     "[comment&formatting&formatting-code `][comment nongye][comment&formatting&formatting-code `]");
 
   FT("doubleBackticks",
-     "[comment&formatting&formatting-code ``][comment foo ` bar][comment&formatting&formatting-code ``]");
+     "[comment&formatting&formatting-code ``][comment nongye ` bar][comment&formatting&formatting-code ``]");
 
   FT("codeBlock",
      "[comment&formatting&formatting-code-block ```css]",
-     "[tag foo]",
+     "[tag nongye]",
      "[comment&formatting&formatting-code-block ```]");
 
   FT("taskList",
-     "[variable-2&formatting&formatting-list&formatting-list-ul - ][meta&formatting&formatting-task [ ]]][variable-2  foo]",
-     "[variable-2&formatting&formatting-list&formatting-list-ul - ][property&formatting&formatting-task [x]]][variable-2  foo]");
+     "[variable-2&formatting&formatting-list&formatting-list-ul - ][meta&formatting&formatting-task [ ]]][variable-2  nongye]",
+     "[variable-2&formatting&formatting-list&formatting-list-ul - ][property&formatting&formatting-task [x]]][variable-2  nongye]");
 
   FT("formatting_strikethrough",
-     "[strikethrough&formatting&formatting-strikethrough ~~][strikethrough foo][strikethrough&formatting&formatting-strikethrough ~~]");
+     "[strikethrough&formatting&formatting-strikethrough ~~][strikethrough nongye][strikethrough&formatting&formatting-strikethrough ~~]");
 
   FT("formatting_strikethrough",
-     "foo [strikethrough&formatting&formatting-strikethrough ~~][strikethrough bar][strikethrough&formatting&formatting-strikethrough ~~]");
+     "nongye [strikethrough&formatting&formatting-strikethrough ~~][strikethrough bar][strikethrough&formatting&formatting-strikethrough ~~]");
 
   MT("emInWordAsterisk",
-     "foo[em *bar*]hello");
+     "nongye[em *bar*]hello");
 
   MT("emInWordUnderscore",
      "foo_bar_hello");
@@ -39,121 +39,121 @@
 
   MT("fencedCodeBlocks",
      "[comment ```]",
-     "[comment foo]",
+     "[comment nongye]",
      "",
      "[comment ```]",
      "bar");
 
   MT("fencedCodeBlockModeSwitching",
      "[comment ```javascript]",
-     "[variable foo]",
+     "[variable nongye]",
      "",
      "[comment ```]",
      "bar");
 
   MT("taskListAsterisk",
-     "[variable-2 * []] foo]", // Invalid; must have space or x between []
+     "[variable-2 * []] nongye]", // Invalid; must have space or x between []
      "[variable-2 * [ ]]bar]", // Invalid; must have space after ]
      "[variable-2 * [x]]hello]", // Invalid; must have space after ]
      "[variable-2 * ][meta [ ]]][variable-2  [world]]]", // Valid; tests reference style links
-     "    [variable-3 * ][property [x]]][variable-3  foo]"); // Valid; can be nested
+     "    [variable-3 * ][property [x]]][variable-3  nongye]"); // Valid; can be nested
 
   MT("taskListPlus",
-     "[variable-2 + []] foo]", // Invalid; must have space or x between []
+     "[variable-2 + []] nongye]", // Invalid; must have space or x between []
      "[variable-2 + [ ]]bar]", // Invalid; must have space after ]
      "[variable-2 + [x]]hello]", // Invalid; must have space after ]
      "[variable-2 + ][meta [ ]]][variable-2  [world]]]", // Valid; tests reference style links
-     "    [variable-3 + ][property [x]]][variable-3  foo]"); // Valid; can be nested
+     "    [variable-3 + ][property [x]]][variable-3  nongye]"); // Valid; can be nested
 
   MT("taskListDash",
-     "[variable-2 - []] foo]", // Invalid; must have space or x between []
+     "[variable-2 - []] nongye]", // Invalid; must have space or x between []
      "[variable-2 - [ ]]bar]", // Invalid; must have space after ]
      "[variable-2 - [x]]hello]", // Invalid; must have space after ]
      "[variable-2 - ][meta [ ]]][variable-2  [world]]]", // Valid; tests reference style links
-     "    [variable-3 - ][property [x]]][variable-3  foo]"); // Valid; can be nested
+     "    [variable-3 - ][property [x]]][variable-3  nongye]"); // Valid; can be nested
 
   MT("taskListNumber",
-     "[variable-2 1. []] foo]", // Invalid; must have space or x between []
+     "[variable-2 1. []] nongye]", // Invalid; must have space or x between []
      "[variable-2 2. [ ]]bar]", // Invalid; must have space after ]
      "[variable-2 3. [x]]hello]", // Invalid; must have space after ]
      "[variable-2 4. ][meta [ ]]][variable-2  [world]]]", // Valid; tests reference style links
-     "    [variable-3 1. ][property [x]]][variable-3  foo]"); // Valid; can be nested
+     "    [variable-3 1. ][property [x]]][variable-3  nongye]"); // Valid; can be nested
 
   MT("SHA",
-     "foo [link be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2] bar");
+     "nongye [link be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2] bar");
 
   MT("SHAEmphasis",
-     "[em *foo ][em&link be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2][em *]");
+     "[em *nongye ][em&link be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2][em *]");
 
   MT("shortSHA",
-     "foo [link be6a8cc] bar");
+     "nongye [link be6a8cc] bar");
 
   MT("tooShortSHA",
-     "foo be6a8c bar");
+     "nongye be6a8c bar");
 
   MT("longSHA",
-     "foo be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd22 bar");
+     "nongye be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd22 bar");
 
   MT("badSHA",
-     "foo be6a8cc1c1ecfe9489fb51e4869af15a13fc2cg2 bar");
+     "nongye be6a8cc1c1ecfe9489fb51e4869af15a13fc2cg2 bar");
 
   MT("userSHA",
-     "foo [link bar@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2] hello");
+     "nongye [link bar@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2] hello");
 
   MT("userSHAEmphasis",
-     "[em *foo ][em&link bar@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2][em *]");
+     "[em *nongye ][em&link bar@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2][em *]");
 
   MT("userProjectSHA",
-     "foo [link bar/hello@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2] world");
+     "nongye [link bar/hello@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2] world");
 
   MT("userProjectSHAEmphasis",
-     "[em *foo ][em&link bar/hello@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2][em *]");
+     "[em *nongye ][em&link bar/hello@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2][em *]");
 
   MT("num",
-     "foo [link #1] bar");
+     "nongye [link #1] bar");
 
   MT("numEmphasis",
-     "[em *foo ][em&link #1][em *]");
+     "[em *nongye ][em&link #1][em *]");
 
   MT("badNum",
-     "foo #1bar hello");
+     "nongye #1bar hello");
 
   MT("userNum",
-     "foo [link bar#1] hello");
+     "nongye [link bar#1] hello");
 
   MT("userNumEmphasis",
-     "[em *foo ][em&link bar#1][em *]");
+     "[em *nongye ][em&link bar#1][em *]");
 
   MT("userProjectNum",
-     "foo [link bar/hello#1] world");
+     "nongye [link bar/hello#1] world");
 
   MT("userProjectNumEmphasis",
-     "[em *foo ][em&link bar/hello#1][em *]");
+     "[em *nongye ][em&link bar/hello#1][em *]");
 
   MT("vanillaLink",
-     "foo [link http://www.example.com/] bar");
+     "nongye [link http://www.example.com/] bar");
 
   MT("vanillaLinkPunctuation",
-     "foo [link http://www.example.com/]. bar");
+     "nongye [link http://www.example.com/]. bar");
 
   MT("vanillaLinkExtension",
-     "foo [link http://www.example.com/index.html] bar");
+     "nongye [link http://www.example.com/index.html] bar");
 
   MT("vanillaLinkEmphasis",
-     "foo [em *][em&link http://www.example.com/index.html][em *] bar");
+     "nongye [em *][em&link http://www.example.com/index.html][em *] bar");
 
   MT("notALink",
      "[comment ```css]",
-     "[tag foo] {[property color]:[keyword black];}",
+     "[tag nongye] {[property color]:[keyword black];}",
      "[comment ```][link http://www.example.com/]");
 
   MT("notALink",
-     "[comment ``foo `bar` http://www.example.com/``] hello");
+     "[comment ``nongye `bar` http://www.example.com/``] hello");
 
   MT("notALink",
-     "[comment `foo]",
+     "[comment `nongye]",
      "[link http://www.example.com/]",
-     "[comment `foo]",
+     "[comment `nongye]",
      "",
      "[link http://www.example.com/]");
 
@@ -169,45 +169,45 @@
      "Link: [link http://www.example.com/]");
 
   MT("strikethrough",
-     "[strikethrough ~~foo~~]");
+     "[strikethrough ~~nongye~~]");
 
   MT("strikethroughWithStartingSpace",
-     "~~ foo~~");
+     "~~ nongye~~");
 
   MT("strikethroughUnclosedStrayTildes",
-    "[strikethrough ~~foo~~~]");
+    "[strikethrough ~~nongye~~~]");
 
   MT("strikethroughUnclosedStrayTildes",
-     "[strikethrough ~~foo ~~]");
+     "[strikethrough ~~nongye ~~]");
 
   MT("strikethroughUnclosedStrayTildes",
-    "[strikethrough ~~foo ~~ bar]");
+    "[strikethrough ~~nongye ~~ bar]");
 
   MT("strikethroughUnclosedStrayTildes",
-    "[strikethrough ~~foo ~~ bar~~]hello");
+    "[strikethrough ~~nongye ~~ bar~~]hello");
 
   MT("strikethroughOneLetter",
      "[strikethrough ~~a~~]");
 
   MT("strikethroughWrapped",
-     "[strikethrough ~~foo]",
-     "[strikethrough foo~~]");
+     "[strikethrough ~~nongye]",
+     "[strikethrough nongye~~]");
 
   MT("strikethroughParagraph",
-     "[strikethrough ~~foo]",
+     "[strikethrough ~~nongye]",
      "",
-     "foo[strikethrough ~~bar]");
+     "nongye[strikethrough ~~bar]");
 
   MT("strikethroughEm",
-     "[strikethrough ~~foo][em&strikethrough *bar*][strikethrough ~~]");
+     "[strikethrough ~~nongye][em&strikethrough *bar*][strikethrough ~~]");
 
   MT("strikethroughEm",
-     "[em *][em&strikethrough ~~foo~~][em *]");
+     "[em *][em&strikethrough ~~nongye~~][em *]");
 
   MT("strikethroughStrong",
-     "[strikethrough ~~][strong&strikethrough **foo**][strikethrough ~~]");
+     "[strikethrough ~~][strong&strikethrough **nongye**][strikethrough ~~]");
 
   MT("strikethroughStrong",
-     "[strong **][strong&strikethrough ~~foo~~][strong **]");
+     "[strong **][strong&strikethrough ~~nongye~~][strong **]");
 
 })();

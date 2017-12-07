@@ -6,31 +6,31 @@
   function MT(name) { test.mode(name, mode, Array.prototype.slice.call(arguments, 1), "scss"); }
 
   MT('url_with_quotation',
-    "[tag foo] { [property background]:[atom url]([string test.jpg]) }");
+    "[tag nongye] { [property background]:[atom url]([string test.jpg]) }");
 
   MT('url_with_double_quotes',
-    "[tag foo] { [property background]:[atom url]([string \"test.jpg\"]) }");
+    "[tag nongye] { [property background]:[atom url]([string \"test.jpg\"]) }");
 
   MT('url_with_single_quotes',
-    "[tag foo] { [property background]:[atom url]([string \'test.jpg\']) }");
+    "[tag nongye] { [property background]:[atom url]([string \'test.jpg\']) }");
 
   MT('string',
     "[def @import] [string \"compass/css3\"]");
 
   MT('important_keyword',
-    "[tag foo] { [property background]:[atom url]([string \'test.jpg\']) [keyword !important] }");
+    "[tag nongye] { [property background]:[atom url]([string \'test.jpg\']) [keyword !important] }");
 
   MT('variable',
     "[variable-2 $blue]:[atom #333]");
 
   MT('variable_as_attribute',
-    "[tag foo] { [property color]:[variable-2 $blue] }");
+    "[tag nongye] { [property color]:[variable-2 $blue] }");
 
   MT('numbers',
-    "[tag foo] { [property padding]:[number 10px] [number 10] [number 10em] [number 8in] }");
+    "[tag nongye] { [property padding]:[number 10px] [number 10] [number 10em] [number 8in] }");
 
   MT('number_percentage',
-    "[tag foo] { [property width]:[number 80%] }");
+    "[tag nongye] { [property width]:[number 80%] }");
 
   MT('selector',
     "[builtin #hello][qualifier .world]{}");
@@ -42,10 +42,10 @@
     "[comment /*foobar*/]");
 
   MT('attribute_with_hyphen',
-    "[tag foo] { [property font-size]:[number 10px] }");
+    "[tag nongye] { [property font-size]:[number 10px] }");
 
   MT('string_after_attribute',
-    "[tag foo] { [property content]:[string \"::\"] }");
+    "[tag nongye] { [property content]:[string \"::\"] }");
 
   MT('directives',
     "[def @include] [qualifier .mixin]");
@@ -67,16 +67,16 @@
     "[tag p] { [tag a] { [property color]:[atom #000]; } }");
 
   MT('interpolation_in_property',
-    "[tag foo] { #{[variable-2 $hello]}:[number 2]; }");
+    "[tag nongye] { #{[variable-2 $hello]}:[number 2]; }");
 
   MT('interpolation_in_selector',
-    "[tag foo]#{[variable-2 $hello]} { [property color]:[atom #000]; }");
+    "[tag nongye]#{[variable-2 $hello]} { [property color]:[atom #000]; }");
 
   MT('interpolation_error',
-    "[tag foo]#{[error foo]} { [property color]:[atom #000]; }");
+    "[tag nongye]#{[error nongye]} { [property color]:[atom #000]; }");
 
   MT("divide_operator",
-    "[tag foo] { [property width]:[number 4] [operator /] [number 2] }");
+    "[tag nongye] { [property width]:[number 4] [operator /] [number 2] }");
 
   MT('nested_structure_with_id_selector',
     "[tag p] { [builtin #hello] { [property color]:[keyword red]; } }");
@@ -88,13 +88,13 @@
      "{}");
 
   MT('indent_nested',
-     "[tag foo] {",
+     "[tag nongye] {",
      "  [tag bar] {",
      "  }",
      "}");
 
   MT('indent_parentheses',
-     "[tag foo] {",
+     "[tag nongye] {",
      "  [property color]: [variable darken]([variable-2 $blue],",
      "    [number 9%]);",
      "}");

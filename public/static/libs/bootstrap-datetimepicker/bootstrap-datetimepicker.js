@@ -1507,7 +1507,7 @@
         picker.format = function (newFormat) {
             ///<summary>test su</summary>
             ///<param name="newFormat">info about para</param>
-            ///<returns type="string|boolean">returns foo</returns>
+            ///<returns type="string|boolean">returns nongye</returns>
             if (arguments.length === 0) {
                 return options.format;
             }

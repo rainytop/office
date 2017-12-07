@@ -68,13 +68,13 @@ if (!function_exists('trait_uses_recursive')) {
 if (!function_exists('classnames')) {
     /**
      * css样式名生成器
-     * classnames("foo", "bar"); // => "foo bar"
-     * classnames("foo", [ "bar"=> true ]); // => "foo bar"
-     * classnames([ "foo-bar"=> true ]); // => "foo-bar"
-     * classnames([ "foo-bar"=> false ]); // => "
-     * classnames([ "foo" => true ], [ "bar"=> true ]); // => "foo bar"
-     * classnames([ "foo" => true, "bar"=> true ]); // => "foo bar"
-     * classnames("foo", [ "bar"=> true, "duck"=> false ], "baz", [ "quux"=> true ]); // => "foo bar baz quux"
+     * classnames("nongye", "bar"); // => "nongye bar"
+     * classnames("nongye", [ "bar"=> true ]); // => "nongye bar"
+     * classnames([ "nongye-bar"=> true ]); // => "nongye-bar"
+     * classnames([ "nongye-bar"=> false ]); // => "
+     * classnames([ "nongye" => true ], [ "bar"=> true ]); // => "nongye bar"
+     * classnames([ "nongye" => true, "bar"=> true ]); // => "nongye bar"
+     * classnames("nongye", [ "bar"=> true, "duck"=> false ], "baz", [ "quux"=> true ]); // => "nongye bar baz quux"
      * classnames(null, false, "bar", 0, 1, [ "baz"=> null ]); // => "bar 1"
      */
     function classnames()

@@ -2601,7 +2601,7 @@ var CodeMirror = (function() {
     // Feature-detect whether newlines in textareas are converted to \r\n
     (function () {
         var te = document.createElement("textarea");
-        te.value = "foo\nbar";
+        te.value = "nongye\nbar";
         if (te.value.indexOf("\r") > -1) lineSep = "\r\n";
     }());
 

@@ -22,7 +22,7 @@
 
   MT("cdata",
      "[tag&bracket <][tag top][tag&bracket >]",
-     "  [atom <![CDATA[foo]",
+     "  [atom <![CDATA[nongye]",
      "[atom barbazguh]]]]>]",
      "[tag&bracket </][tag top][tag&bracket >]");
 
@@ -45,7 +45,7 @@
 
   MT("pThenArticle",
      "[tag&bracket <][tag p][tag&bracket >]",
-     "  foo",
+     "  nongye",
      "[tag&bracket <][tag article][tag&bracket >]bar");
 
 })();

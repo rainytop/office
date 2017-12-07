@@ -88,20 +88,20 @@
 
   MT("keywords",
      "[keyword logic]",
-     "[keyword logic] [variable foo]",
+     "[keyword logic] [variable nongye]",
      "[keyword reg] [variable abc]"
   );
 
   MT("variables",
      "[variable _leading_underscore]",
      "[variable _if]",
-     "[number 12] [variable foo]",
-     "[variable foo] [number 14]"
+     "[number 12] [variable nongye]",
+     "[variable nongye] [number 14]"
   );
 
   MT("tick_defines",
      "[def `FOO]",
-     "[def `foo]",
+     "[def `nongye]",
      "[def `FOO_bar]"
   );
 
@@ -141,18 +141,18 @@
 
   // Indentation tests
   MT("indent_single_statement_if",
-      "[keyword if] [bracket (][variable foo][bracket )]",
+      "[keyword if] [bracket (][variable nongye][bracket )]",
       "    [keyword break];",
       ""
   );
 
   MT("no_indent_after_single_line_if",
-      "[keyword if] [bracket (][variable foo][bracket )] [keyword break];",
+      "[keyword if] [bracket (][variable nongye][bracket )] [keyword break];",
       ""
   );
 
   MT("indent_after_if_begin_same_line",
-      "[keyword if] [bracket (][variable foo][bracket )] [keyword begin]",
+      "[keyword if] [bracket (][variable nongye][bracket )] [keyword begin]",
       "    [keyword break];",
       "    [keyword break];",
       "[keyword end]",
@@ -160,7 +160,7 @@
   );
 
   MT("indent_after_if_begin_next_line",
-      "[keyword if] [bracket (][variable foo][bracket )]",
+      "[keyword if] [bracket (][variable nongye][bracket )]",
       "    [keyword begin]",
       "        [keyword break];",
       "        [keyword break];",
@@ -169,7 +169,7 @@
   );
 
   MT("indent_single_statement_if_else",
-      "[keyword if] [bracket (][variable foo][bracket )]",
+      "[keyword if] [bracket (][variable nongye][bracket )]",
       "    [keyword break];",
       "[keyword else]",
       "    [keyword break];",
@@ -177,7 +177,7 @@
   );
 
   MT("indent_if_else_begin_same_line",
-      "[keyword if] [bracket (][variable foo][bracket )] [keyword begin]",
+      "[keyword if] [bracket (][variable nongye][bracket )] [keyword begin]",
       "    [keyword break];",
       "    [keyword break];",
       "[keyword end] [keyword else] [keyword begin]",
@@ -188,7 +188,7 @@
   );
 
   MT("indent_if_else_begin_next_line",
-      "[keyword if] [bracket (][variable foo][bracket )]",
+      "[keyword if] [bracket (][variable nongye][bracket )]",
       "    [keyword begin]",
       "        [keyword break];",
       "        [keyword break];",
@@ -202,9 +202,9 @@
   );
 
   MT("indent_if_nested_without_begin",
-      "[keyword if] [bracket (][variable foo][bracket )]",
-      "    [keyword if] [bracket (][variable foo][bracket )]",
-      "        [keyword if] [bracket (][variable foo][bracket )]",
+      "[keyword if] [bracket (][variable nongye][bracket )]",
+      "    [keyword if] [bracket (][variable nongye][bracket )]",
+      "        [keyword if] [bracket (][variable nongye][bracket )]",
       "            [keyword break];",
       ""
   );

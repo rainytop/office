@@ -9,9 +9,9 @@
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 
+use app\user\model\User;
 use think\Db;
 use think\View;
-use app\user\model\User;
 
 // 应用公共文件
 

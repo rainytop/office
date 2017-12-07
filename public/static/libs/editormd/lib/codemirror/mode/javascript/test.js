@@ -6,22 +6,22 @@
   function MT(name) { test.mode(name, mode, Array.prototype.slice.call(arguments, 1)); }
 
   MT("locals",
-     "[keyword function] [variable foo]([def a], [def b]) { [keyword var] [def c] [operator =] [number 10]; [keyword return] [variable-2 a] [operator +] [variable-2 c] [operator +] [variable d]; }");
+     "[keyword function] [variable nongye]([def a], [def b]) { [keyword var] [def c] [operator =] [number 10]; [keyword return] [variable-2 a] [operator +] [variable-2 c] [operator +] [variable d]; }");
 
   MT("comma-and-binop",
      "[keyword function](){ [keyword var] [def x] [operator =] [number 1] [operator +] [number 2], [def y]; }");
 
   MT("destructuring",
      "([keyword function]([def a], [[[def b], [def c] ]]) {",
-     "  [keyword let] {[def d], [property foo]: [def c][operator =][number 10], [def x]} [operator =] [variable foo]([variable-2 a]);",
+     "  [keyword let] {[def d], [property nongye]: [def c][operator =][number 10], [def x]} [operator =] [variable nongye]([variable-2 a]);",
      "  [[[variable-2 c], [variable y] ]] [operator =] [variable-2 c];",
      "})();");
 
   MT("class_body",
-     "[keyword class] [variable Foo] {",
+     "[keyword class] [variable nongye] {",
      "  [property constructor]() {}",
      "  [property sayName]() {",
-     "    [keyword return] [string-2 `foo${][variable foo][string-2 }oo`];",
+     "    [keyword return] [string-2 `nongye${][variable nongye][string-2 }oo`];",
      "  }",
      "}");
 
@@ -35,13 +35,13 @@
      "}");
 
   MT("module",
-     "[keyword module] [string 'foo'] {",
+     "[keyword module] [string 'nongye'] {",
      "  [keyword export] [keyword let] [def x] [operator =] [number 42];",
      "  [keyword export] [keyword *] [keyword from] [string 'somewhere'];",
      "}");
 
   MT("import",
-     "[keyword function] [variable foo]() {",
+     "[keyword function] [variable nongye]() {",
      "  [keyword import] [def $] [keyword from] [string 'jquery'];",
      "  [keyword module] [def crypto] [keyword from] [string 'crypto'];",
      "  [keyword import] { [def encrypt], [def decrypt] } [keyword from] [string 'crypto'];",
@@ -85,10 +85,10 @@
      "}");
 
   MT("quasi",
-     "[variable re][string-2 `fofdlakj${][variable x] [operator +] ([variable re][string-2 `foo`]) [operator +] [number 1][string-2 }fdsa`] [operator +] [number 2]");
+     "[variable re][string-2 `fofdlakj${][variable x] [operator +] ([variable re][string-2 `nongye`]) [operator +] [number 1][string-2 }fdsa`] [operator +] [number 2]");
 
   MT("quasi_no_function",
-     "[variable x] [operator =] [string-2 `fofdlakj${][variable x] [operator +] [string-2 `foo`] [operator +] [number 1][string-2 }fdsa`] [operator +] [number 2]");
+     "[variable x] [operator =] [string-2 `fofdlakj${][variable x] [operator +] [string-2 `nongye`] [operator +] [number 1][string-2 }fdsa`] [operator +] [number 2]");
 
   MT("indent_statement",
      "[keyword var] [variable x] [operator =] [number 10]",
@@ -119,14 +119,14 @@
      "[keyword debugger];");
 
   MT("indent_c_style",
-     "[keyword function] [variable foo]()",
+     "[keyword function] [variable nongye]()",
      "{",
      "  [keyword debugger];",
      "}");
 
   MT("indent_else",
      "[keyword for] (;;)",
-     "  [keyword if] ([variable foo])",
+     "  [keyword if] ([variable nongye])",
      "    [keyword if] ([variable bar])",
      "      [number 1];",
      "    [keyword else]",
@@ -135,23 +135,23 @@
      "    [number 3];");
 
   MT("indent_funarg",
-     "[variable foo]([number 10000],",
+     "[variable nongye]([number 10000],",
      "    [keyword function]([def a]) {",
      "  [keyword debugger];",
      "};");
 
   MT("indent_below_if",
      "[keyword for] (;;)",
-     "  [keyword if] ([variable foo])",
+     "  [keyword if] ([variable nongye])",
      "    [number 1];",
      "[number 2];");
 
   MT("multilinestring",
-     "[keyword var] [variable x] [operator =] [string 'foo\\]",
+     "[keyword var] [variable x] [operator =] [string 'nongye\\]",
      "[string bar'];");
 
   MT("scary_regexp",
-     "[string-2 /foo[[/]]bar/];");
+     "[string-2 /nongye[[/]]bar/];");
 
   MT("indent_strange_array",
      "[keyword var] [variable x] [operator =] [[",

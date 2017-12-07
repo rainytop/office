@@ -221,7 +221,7 @@ class HTMLPurifier_URI
         // reconstruct authority
         $authority = null;
         // there is a rendering difference between a null authority
-        // (http:foo-bar) and an empty string authority
+        // (http:nongye-bar) and an empty string authority
         // (http:///foo-bar).
         if (!is_null($this->host)) {
             $authority = '';
@@ -237,7 +237,7 @@ class HTMLPurifier_URI
         // Reconstruct the result
         // One might wonder about parsing quirks from browsers after
         // this reconstruction.  Unfortunately, parsing behavior depends
-        // on what *scheme* was employed (file:///foo is handled *very*
+        // on what *scheme* was employed (file:///nongye is handled *very*
         // differently than http:///foo), so unfortunately we have to
         // defer to the schemes to do the right thing.
         $result = '';

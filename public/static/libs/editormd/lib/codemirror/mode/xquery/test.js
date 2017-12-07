@@ -16,8 +16,8 @@
      "      [keyword let] [variable $joe][keyword :=][atom 1]",
      "      [keyword return] [keyword element] [variable element] {",
      "          [keyword attribute] [variable attribute] { [atom 1] },",
-     "          [keyword element] [variable test] { [variable &#39;a&#39;] },           [keyword attribute] [variable foo] { [variable &quot;bar&quot;] },",
-     "          [def&variable fn:doc]()[[ [variable foo][keyword /][variable @bar] [keyword eq] [variable $let] ]],",
+     "          [keyword element] [variable test] { [variable &#39;a&#39;] },           [keyword attribute] [variable nongye] { [variable &quot;bar&quot;] },",
+     "          [def&variable fn:doc]()[[ [variable nongye][keyword /][variable @bar] [keyword eq] [variable $let] ]],",
      "          [keyword //][variable x] }                 [comment (: a more 'evil' test :)]",
      "      [comment (: Modified Blakeley example (: with nested comment :) ... :)]",
      "      [keyword declare] [keyword private] [keyword function] [def&variable local:declare]() {()}[variable ;]",
@@ -34,10 +34,10 @@
      "      }");
 
   MT("testEmptySequenceKeyword",
-     "[string \"foo\"] [keyword instance] [keyword of] [keyword empty-sequence]()");
+     "[string \"nongye\"] [keyword instance] [keyword of] [keyword empty-sequence]()");
 
   MT("testMultiAttr",
-     "[tag <p ][attribute a1]=[string \"foo\"] [attribute a2]=[string \"bar\"][tag >][variable hello] [variable world][tag </p>]");
+     "[tag <p ][attribute a1]=[string \"nongye\"] [attribute a2]=[string \"bar\"][tag >][variable hello] [variable world][tag </p>]");
 
   MT("test namespaced variable",
      "[keyword declare] [keyword namespace] [variable e] [keyword =] [string \"http://example.com/ANamespace\"][variable ;declare] [keyword variable] [variable $e:exampleComThisVarIsNotRecognized] [keyword as] [keyword element]([keyword *]) [variable external;]");

@@ -15,25 +15,25 @@
    */
 
   MT('em',
-      'foo [em _bar_]');
+      'nongye [em _bar_]');
 
   MT('emBoogus',
       'code_mirror');
 
   MT('strong',
-      'foo [strong *bar*]');
+      'nongye [strong *bar*]');
 
   MT('strongBogus',
       '3 * 3 = 9');
 
   MT('italic',
-      'foo [em __bar__]');
+      'nongye [em __bar__]');
 
   MT('italicBogus',
       'code__mirror');
 
   MT('bold',
-      'foo [strong **bar**]');
+      'nongye [strong **bar**]');
 
   MT('boldBogus',
       '3 ** 3 = 27');
@@ -47,10 +47,10 @@
       '[link [[code_mirror]]http://codemirror.net]');
 
   MT('footCite',
-      'foo bar[qualifier [[1]]]');
+      'nongye bar[qualifier [[1]]]');
 
   MT('footCiteBogus',
-      'foo bar[[1a2]]');
+      'nongye bar[[1a2]]');
 
   MT('special-characters',
           'Registered [tag (r)], ' +
@@ -83,7 +83,7 @@
       '~username');
 
   MT('supBogus',
-      'foo ^ bar');
+      'nongye ^ bar');
 
   MT('deletionBogus',
       '3 - 3 = 0');
@@ -105,25 +105,25 @@
    */
 
   MT('h1',
-      '[header&header-1 h1. foo]');
+      '[header&header-1 h1. nongye]');
 
   MT('h2',
-      '[header&header-2 h2. foo]');
+      '[header&header-2 h2. nongye]');
 
   MT('h3',
-      '[header&header-3 h3. foo]');
+      '[header&header-3 h3. nongye]');
 
   MT('h4',
-      '[header&header-4 h4. foo]');
+      '[header&header-4 h4. nongye]');
 
   MT('h5',
-      '[header&header-5 h5. foo]');
+      '[header&header-5 h5. nongye]');
 
   MT('h6',
-      '[header&header-6 h6. foo]');
+      '[header&header-6 h6. nongye]');
 
   MT('h7Bogus',
-      'h7. foo');
+      'h7. nongye');
 
   MT('multipleHeaders',
       '[header&header-1 h1. Heading 1]',
@@ -135,73 +135,73 @@
       'More text.');
 
   MT('h1inline',
-      '[header&header-1 h1. foo ][header&header-1&em _bar_][header&header-1  baz]');
+      '[header&header-1 h1. nongye ][header&header-1&em _bar_][header&header-1  baz]');
 
   /*
    * Lists
    */
 
   MT('ul',
-      'foo',
+      'nongye',
       'bar',
       '',
-      '[variable-2 * foo]',
+      '[variable-2 * nongye]',
       '[variable-2 * bar]');
 
   MT('ulNoBlank',
-      'foo',
+      'nongye',
       'bar',
-      '[variable-2 * foo]',
+      '[variable-2 * nongye]',
       '[variable-2 * bar]');
 
   MT('ol',
-      'foo',
+      'nongye',
       'bar',
       '',
-      '[variable-2 # foo]',
+      '[variable-2 # nongye]',
       '[variable-2 # bar]');
 
   MT('olNoBlank',
-      'foo',
+      'nongye',
       'bar',
-      '[variable-2 # foo]',
+      '[variable-2 # nongye]',
       '[variable-2 # bar]');
 
   MT('ulFormatting',
       '[variable-2 * ][variable-2&em _foo_][variable-2  bar]',
       '[variable-2 * ][variable-2&strong *][variable-2&em&strong _foo_]' +
         '[variable-2&strong *][variable-2  bar]',
-      '[variable-2 * ][variable-2&strong *foo*][variable-2  bar]');
+      '[variable-2 * ][variable-2&strong *nongye*][variable-2  bar]');
 
   MT('olFormatting',
       '[variable-2 # ][variable-2&em _foo_][variable-2  bar]',
       '[variable-2 # ][variable-2&strong *][variable-2&em&strong _foo_]' +
         '[variable-2&strong *][variable-2  bar]',
-      '[variable-2 # ][variable-2&strong *foo*][variable-2  bar]');
+      '[variable-2 # ][variable-2&strong *nongye*][variable-2  bar]');
 
   MT('ulNested',
-      '[variable-2 * foo]',
+      '[variable-2 * nongye]',
       '[variable-3 ** bar]',
       '[keyword *** bar]',
       '[variable-2 **** bar]',
       '[variable-3 ** bar]');
 
   MT('olNested',
-      '[variable-2 # foo]',
+      '[variable-2 # nongye]',
       '[variable-3 ## bar]',
       '[keyword ### bar]',
       '[variable-2 #### bar]',
       '[variable-3 ## bar]');
 
   MT('ulNestedWithOl',
-      '[variable-2 * foo]',
+      '[variable-2 * nongye]',
       '[variable-3 ## bar]',
       '[keyword *** bar]',
       '[variable-2 #### bar]',
       '[variable-3 ** bar]');
 
   MT('olNestedWithUl',
-      '[variable-2 # foo]',
+      '[variable-2 # nongye]',
       '[variable-3 ** bar]',
       '[keyword ### bar]',
       '[variable-2 **** bar]',
@@ -232,19 +232,19 @@
    */
 
   MT('divWithAttribute',
-      '[punctuation div][punctuation&attribute (#my-id)][punctuation . foo bar]');
+      '[punctuation div][punctuation&attribute (#my-id)][punctuation . nongye bar]');
 
   MT('divWithAttributeAnd2emRightPadding',
-      '[punctuation div][punctuation&attribute (#my-id)((][punctuation . foo bar]');
+      '[punctuation div][punctuation&attribute (#my-id)((][punctuation . nongye bar]');
 
   MT('divWithClassAndId',
-      '[punctuation div][punctuation&attribute (my-class#my-id)][punctuation . foo bar]');
+      '[punctuation div][punctuation&attribute (my-class#my-id)][punctuation . nongye bar]');
 
   MT('paragraphWithCss',
-      'p[attribute {color:red;}]. foo bar');
+      'p[attribute {color:red;}]. nongye bar');
 
   MT('paragraphNestedStyles',
-      'p. [strong *foo ][strong&em _bar_][strong *]');
+      'p. [strong *nongye ][strong&em _bar_][strong *]');
 
   MT('paragraphWithLanguage',
       'p[attribute [[fr]]]. Parlez-vous français?');
@@ -277,7 +277,7 @@
       'p[attribute ((())]. Right');
 
   MT('divFormatting',
-      '[punctuation div. ][punctuation&strong *foo ]' +
+      '[punctuation div. ][punctuation&strong *nongye ]' +
         '[punctuation&strong&em _bar_][punctuation&strong *]');
 
   MT('phraseModifierAttributes',
@@ -298,38 +298,38 @@
       'p. This is another.');
 
   MT('div',
-      '[punctuation div. foo bar]');
+      '[punctuation div. nongye bar]');
 
   MT('pre',
       '[operator pre. Text]');
 
   MT('bq.',
-      '[bracket bq. foo bar]',
+      '[bracket bq. nongye bar]',
       '',
       'Normal text.');
 
   MT('footnote',
-      '[variable fn123. foo ][variable&strong *bar*]');
+      '[variable fn123. nongye ][variable&strong *bar*]');
 
   /*
    * Spanning Layouts
    */
 
   MT('bq..ThenParagraph',
-      '[bracket bq.. foo bar]',
+      '[bracket bq.. nongye bar]',
       '',
       '[bracket More quote.]',
       'p. Normal Text');
 
   MT('bq..ThenH1',
-      '[bracket bq.. foo bar]',
+      '[bracket bq.. nongye bar]',
       '',
       '[bracket More quote.]',
       '[header&header-1 h1. Header Text]');
 
   MT('bc..ThenParagraph',
       '[atom bc.. # Some ruby code]',
-      '[atom obj = {foo: :bar}]',
+      '[atom obj = {nongye: :bar}]',
       '[atom puts obj]',
       '',
       '[atom obj[[:love]] = "*love*"]',
@@ -338,13 +338,13 @@
       'p. Normal text.');
 
   MT('fn1..ThenParagraph',
-      '[variable fn1.. foo bar]',
+      '[variable fn1.. nongye bar]',
       '',
       '[variable More.]',
       'p. Normal Text');
 
   MT('pre..ThenParagraph',
-      '[operator pre.. foo bar]',
+      '[operator pre.. nongye bar]',
       '',
       '[operator More.]',
       'p. Normal Text');
@@ -413,5 +413,5 @@
      '[negative -x-] aaa-bbb ccc-ddd [negative -eee-] fff [negative -ggg-]');
 
   MT('phrase-lone-dash',
-     'foo - bar - baz');
+     'nongye - bar - baz');
 })();

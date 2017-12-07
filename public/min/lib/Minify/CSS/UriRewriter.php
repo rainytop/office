@@ -133,7 +133,7 @@ class Minify_CSS_UriRewriter {
      * real target paths, where the link paths "appear" to be within the document 
      * root. E.g.:
      * <code>
-     * array('/home/foo/www/not/real/path' => '/real/target/path') // unix
+     * array('/home/nongye/www/not/real/path' => '/real/target/path') // unix
      * array('C:\\htdocs\\not\\real' => 'D:\\real\\target\\path')  // Windows
      * </code>
      * 

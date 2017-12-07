@@ -208,7 +208,7 @@ class Minify_CSS_Compressor {
             $this->_inHack = true;
             return '/*\\*/';
         }
-        if ($m !== '' && $m[0] === '/') { // comment looks like /*/ foo */
+        if ($m !== '' && $m[0] === '/') { // comment looks like /*/ nongye */
             // begin hack mode and preserve hack
             $this->_inHack = true;
             return '/*/*/';

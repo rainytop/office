@@ -2547,7 +2547,7 @@
     });
 
     // Setup a very simple "virtual canvas" to make drawing the few shapes we need easier
-    // This is accessible as $(foo).simpledraw()
+    // This is accessible as $(nongye).simpledraw()
 
     VShape = createClass({
         init: function (target, id, type, args) {
