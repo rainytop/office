@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快递派送地区及收费情况</title>
+    <!--<script src="__STATIC__/common/js/echarts.min.js"></script>-->
+    <script src="__STATIC__/common/js/echarts2/echarts.js"></script>
+    <script src="__STATIC__/common/js/jquery.min.js"></script>
+</head>
+<body>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<div id="message"></div>
+<script type="text/javascript">
+    // 路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    // 使用
+    require(['echarts', 'echarts/chart/map'], function (ch) {
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = ch.init(document.getElementById('main'));
+        option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b}'
+            },
+            title: {
+                text: 'EMS派送区域',
+                subtext: '颜色越深表示该区域性价比越高',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            dataRange: {
+                min: 0,
+                max: 10000,
+                x: 'left',
+                y: 'bottom',
+                text: ['高', '低'],           // 文本，默认为数值文本
+                calculable: true
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: ['一类地区', '二类地区', '三类地区', '四类地区', '五类地区']
+            },
+            series: [
+                {
+                    name: '全部区域',
+                    type: 'map',
+                    mapType: 'china',
+                    selectedMode: 'single',
+                    itemStyle: {
+                        normal: {label: {show: true}},
+                        emphasis: {label: {show: true}}
+                    },
+                    data: []
+                },
+                {
+                    name: '一类地区',
+                    type: 'map',
+                    mapType: 'china',
+                    itemStyle: {
+                        normal: {label: {show: true}},
+                        emphasis: {label: {show: true}}
+                    },
+                    data: [
+                        {volist name = "emsAreaLevelOne" id = "vo1"}
+                        {name: '{$vo1.name}', value: 10000 - ({$vo1.level} - 1    )*        2000    },
+        {/volist}
+        ],
+        },
+                {
+                    name: '二类地区',
+                    type:
+                        'map',
+                    mapType:
+                        'china',
+                    itemStyle:
+                        {
+                            normal: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                            ,
+                            emphasis: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                        }
+                    ,
+                    data: [
+                        {volist name = "emsAreaLevelTwo" id = "vo2"}
+                        {name: '{$vo2.name}', value: 10000 - ({$vo2.level} - 1    )*        2000    },
+                    {/volist}
+                    ]
+                }
+                ,
+                {
+                    name: '三类地区',
+                    type:
+                        'map',
+                    mapType:
+                        'china',
+                    itemStyle:
+                        {
+                            normal: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                            ,
+                            emphasis: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                        }
+                    ,
+                    data: [
+                        {volist name = "emsAreaLevelThree" id = "vo3"}
+                        {name: '{$vo3.name}', value: 10000 - ({$vo3.level} - 1    )*        2000    },
+                    {/volist}
+                    ]
+                }
+                ,
+                {
+                    name: '四类地区',
+                    type:
+                        'map',
+                    mapType:
+                        'china',
+                    itemStyle:
+                        {
+                            normal: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                            ,
+                            emphasis: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                        }
+                    ,
+                    data: [
+                        {volist name = "emsAreaLevelFour" id = "vo4"}
+                        {name: '{$vo4.name}', value: 10000 - ({$vo4.level} - 1    )*        2000    },
+                    {/volist}
+                    ]
+                }
+                ,
+                {
+                    name: '五类地区',
+                    type:
+                        'map',
+                    mapType:
+                        'china',
+                    itemStyle:
+                        {
+                            normal: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                            ,
+                            emphasis: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                        }
+                    ,
+                    data: [
+                        {volist name = "emsAreaLevelFive" id = "vo5"}
+                        {name: '{$vo5.name}', value: 10000 - ({$vo5.level} - 1    )*        2000    },
+                    {/volist}
+                    ]
+                }
+                ,
+        ]
+        }
+        ;
+        var ecConfig = require('echarts/config');
+
+        myChart.on(ecConfig.EVENT.MAP_SELECTED, function (param) {
+            var selected = param.selected;
+            var str = '当前选择： ';
+            for (var p in selected) {
+                if (selected[p]) {
+                    str += p + ' ';
+                    //$("#message").html(str);
+                    var deliverFeeUrl = "<?php echo url('kuaidi/api/deliverfee'); ?>";
+                    deliverFeeUrl += '?provinceName=' + encodeURIComponent(p);
+                    $.ajax({
+                        url: deliverFeeUrl,
+                        success: function (result) {
+                            //document.getElementById('message').innerHTML = result;
+                            $("#message").html('ok.' + result);
+                        },
+                        error: function (xhr, textStatus) {
+                            $("#message").html('错误' + xhr.responseText);
+                            console.log(xhr);
+                        },
+                        complete: function (result) {
+                            //$("#message").html('完成'+ result);
+                        }
+                    });
+                }
+            }
+
+        })
+        // 为echarts对象加载数据
+        myChart.setOption(option);
+    });
+</script>
+</body>
+</html>
