@@ -22,9 +22,13 @@ class Api extends Controller
         $emsAreaLevels = config('emsAreaLevels');
         if (array_key_exists($provinceName, $emsAreaLevels)) {
             $emsAreaLevel = $emsAreaLevels[$provinceName];
-            return json_encode("第 $emsAreaLevel 类地区", JSON_UNESCAPED_UNICODE);
+            return json_encode("$provinceName 为第 $emsAreaLevel 类地区", JSON_UNESCAPED_UNICODE);
         } else {
-            return json_encode("尚未开通的地区", JSON_UNESCAPED_UNICODE);
+            return json_encode("$provinceName 为尚未开通的地区", JSON_UNESCAPED_UNICODE);
         }
+    }
+
+    public function foo(){
+
     }
 }
