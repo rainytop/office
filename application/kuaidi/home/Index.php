@@ -11,6 +11,10 @@ use think\Controller;
 
 class Index extends Controller
 {
+    /**
+     * 入口方法
+     * @return mixed
+     */
     public function index(){
         return $this->fetch();
     }
