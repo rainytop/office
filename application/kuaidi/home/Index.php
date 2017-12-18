@@ -7,7 +7,6 @@
  */
 namespace app\kuaidi\home;
 
-
 use think\Controller;
 
 class Index extends Controller

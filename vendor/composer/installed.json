@@ -48,7 +48,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://dl.composer-proxy.org/topthink/think-image/8586cf47f117481c6d415b20f7dedf62e79d5512.zip",
+            "url": "https://api.github.com/repos/top-think/think-image/zipball/8586cf47f117481c6d415b20f7dedf62e79d5512",
             "reference": "8586cf47f117481c6d415b20f7dedf62e79d5512",
             "shasum": ""
         },
@@ -90,7 +90,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://dl.composer-proxy.org/topthink/think-helper/0c99dc625b0d2d4124e1b6ca15a3ad6f0125963f.zip",
+            "url": "https://api.github.com/repos/top-think/think-helper/zipball/0c99dc625b0d2d4124e1b6ca15a3ad6f0125963f",
             "reference": "0c99dc625b0d2d4124e1b6ca15a3ad6f0125963f",
             "shasum": ""
         },
@@ -128,7 +128,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://dl.composer-proxy.org/ezyang/htmlpurifier/95e1bae3182efc0f3422896a3236e991049dac69.zip",
+            "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/95e1bae3182efc0f3422896a3236e991049dac69",
             "reference": "95e1bae3182efc0f3422896a3236e991049dac69",
             "shasum": ""
         },
@@ -177,7 +177,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/top-think/think-installer/1be326e68f63de4e95977ed50f46ae75f017556d.zip",
+            "url": "https://api.github.com/repos/top-think/think-installer/zipball/1be326e68f63de4e95977ed50f46ae75f017556d",
             "reference": "1be326e68f63de4e95977ed50f46ae75f017556d",
             "shasum": ""
         },
@@ -216,12 +216,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/framework.git",
-            "reference": "45268eeba3da7eedaead09a524e2bc20a0132e29"
+            "reference": "926c9edb0c2682b14f563cac2c8a93f42f729016"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/top-think/framework/45268eeba3da7eedaead09a524e2bc20a0132e29.zip",
-            "reference": "45268eeba3da7eedaead09a524e2bc20a0132e29",
+            "url": "https://api.github.com/repos/top-think/framework/zipball/926c9edb0c2682b14f563cac2c8a93f42f729016",
+            "reference": "926c9edb0c2682b14f563cac2c8a93f42f729016",
             "shasum": ""
         },
         "require": {
@@ -260,6 +260,49 @@
             "framework",
             "orm",
             "thinkphp"
+        ]
+    },
+    {
+        "name": "rainytop/phpbasiclibary",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/notinmood/PhpBasicLibary.git",
+            "reference": "b7398d7c099f7bca23430e6cfed70749ad036bbb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/notinmood/PhpBasicLibary/zipball/b7398d7c099f7bca23430e6cfed70749ad036bbb",
+            "reference": "b7398d7c099f7bca23430e6cfed70749ad036bbb",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.3.3 || ^7.0"
+        },
+        "time": "2017-12-17T11:33:11+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "10.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Hiland\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL"
+        ],
+        "description": "rainytop 's php basic libary.",
+        "homepage": "http://www.hilandsoft.com/",
+        "keywords": [
+            "codecs",
+            "php",
+            "tags"
         ]
     }
 ]
