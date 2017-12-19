@@ -269,18 +269,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/notinmood/PhpBasicLibary.git",
-            "reference": "b7398d7c099f7bca23430e6cfed70749ad036bbb"
+            "reference": "ef984fad281a938723d978c67b05152d5c3afca4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/notinmood/PhpBasicLibary/zipball/b7398d7c099f7bca23430e6cfed70749ad036bbb",
-            "reference": "b7398d7c099f7bca23430e6cfed70749ad036bbb",
+            "url": "https://api.github.com/repos/notinmood/PhpBasicLibary/zipball/ef984fad281a938723d978c67b05152d5c3afca4",
+            "reference": "ef984fad281a938723d978c67b05152d5c3afca4",
             "shasum": ""
         },
         "require": {
             "php": "^5.3.3 || ^7.0"
         },
-        "time": "2017-12-17T11:33:11+00:00",
+        "time": "2017-12-18T07:04:09+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
