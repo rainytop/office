@@ -269,18 +269,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/notinmood/PhpBasicLibary.git",
-            "reference": "ef984fad281a938723d978c67b05152d5c3afca4"
+            "reference": "2f466c2272c4fd1b4e410b126fe053f2fa6f23fa"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/notinmood/PhpBasicLibary/zipball/ef984fad281a938723d978c67b05152d5c3afca4",
-            "reference": "ef984fad281a938723d978c67b05152d5c3afca4",
+            "url": "https://api.github.com/repos/notinmood/PhpBasicLibary/zipball/2f466c2272c4fd1b4e410b126fe053f2fa6f23fa",
+            "reference": "2f466c2272c4fd1b4e410b126fe053f2fa6f23fa",
             "shasum": ""
         },
         "require": {
             "php": "^5.3.3 || ^7.0"
         },
-        "time": "2017-12-18T07:04:09+00:00",
+        "time": "2017-12-23T01:06:00+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -297,7 +297,7 @@
         "license": [
             "GPL"
         ],
-        "description": "rainytop 's php basic libary.",
+        "description": "rainytop's php basic libary.",
         "homepage": "http://www.hilandsoft.com/",
         "keywords": [
             "codecs",

@@ -30,5 +30,10 @@ if(!is_file('./data/install.lock')){
     define('BIND_MODULE', 'install');
 }
 
+/**
+ * 定义物理跟目录
+ */
+define('PHYSICAL_ROOT_PATH', dirname(__FILE__));
+
 // 加载框架引导文件
 require './thinkphp/start.php';
