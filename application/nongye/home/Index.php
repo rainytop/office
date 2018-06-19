@@ -9,7 +9,9 @@
 namespace app\nongye\home;
 
 use Hiland\Utils\Office\ExcelHelper;
+use Hiland\Utils\Web\WebHelper;
 use think\Controller;
+use think\Request;
 
 class Index extends Controller
 {
@@ -23,17 +25,39 @@ class Index extends Controller
         dump(2222222222);
     }
 
-    public function operators2()
+    /**
+     *
+     */
+    public function totalproductsA()
     {
         $physicalRoot = PHYSICAL_ROOT_PATH;
-        $excelData = $physicalRoot . "\\public\\static\\agriculturedata\\operators-2017.xlsx";
-        $content = ExcelHelper::getSheetContent($excelData);
-        $contentSorted = array();
-        foreach ($content as $row) {
-            $contentSorted[$row['类别']][] = $row;
+        $excelData = $physicalRoot . "\\public\\static\\agriculturedata\\2.provinces-total-products(2010-2012).xlsx";
+
+        if(Request::instance()->isPost()){
+            WebHelper::download($excelData);
+            exit;
         }
 
-        dump($contentSorted);
+        $content = ExcelHelper::getSheetContent($excelData);
+        $contentSorted = array();
+//        foreach ($content as $row) {
+//            $contentSorted[$row['类别']][] = $row;
+//        }
+
+        //dump($content);
+
+
+        $data= null;
+        $serieData= null;
+        $serieDataSelected= null;
+
+        $this->assign("data", $data);
+        $this->assign("serieData",$serieData);
+        $this->assign("serieDataSelected",$serieDataSelected);
+
+
+        $this->assign("downFile",$excelData);
+        return $this->fetch();
     }
 
     /**
@@ -42,7 +66,14 @@ class Index extends Controller
     public function operators()
     {
         $physicalRoot = PHYSICAL_ROOT_PATH;
-        $excelData = $physicalRoot . "\\public\\static\\agriculturedata\\operators-2017.xlsx";
+        $excelData = $physicalRoot . "\\public\\static\\agriculturedata\\1.operators-2017.xlsx";
+        $downFile= $excelData;
+        if(Request::instance()->isPost()){
+            WebHelper::download($downFile);
+            exit;
+        }
+
+
         $content = ExcelHelper::getSheetContent($excelData);
 
         $contentSorted = array();
@@ -86,7 +117,19 @@ class Index extends Controller
         $this->assign("data", $data);
         $this->assign("serieData",$serieData);
         $this->assign("serieDataSelected",$serieDataSelected);
+
+
+        $this->assign("downFile",$downFile);
         return $this->fetch();
+    }
+
+    public function downFile($fileName){
+        if(empty($fileName)){
+            $physicalRoot = PHYSICAL_ROOT_PATH;
+            $fileName= $physicalRoot . "\\public\\static\\agriculturedata\\1.operators-2017.xlsx";
+        }
+        WebHelper::download($fileName);
+        exit;
     }
 
     /**
