@@ -79,7 +79,7 @@
         }
     });
     // 使用
-    require(['echarts', 'echarts/chart/map','echarts/chart/pie','echarts/chart/bar',], function (ch) {
+    require(['echarts', 'echarts/chart/map','echarts/chart/bar',], function (ch) {
 // 基于准备好的dom，初始化echarts图表
             var myChart = ch.init(document.getElementById('main'));
             option = {
@@ -108,34 +108,27 @@
                         dataView: {show: true, readOnly: false}
                     }
                 },
-
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'value',
+                        boundaryGap : [0, 0.01]
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'category',
+                        data : ['巴西','印尼','美国','印度','中国','世界人口(万)']
+                    }
+                ],
                 series: [
                     {
-                        name: '近年全国各省份粮食总产量分析（万吨）',
-                        type: 'map',
-                        mapType: 'china',
-                        mapLocation: {
-                            x: 'left'
-                        },
-                        selectedMode: 'single',
-                        itemStyle: {
-                            normal: {label: {show: true}},
-                            emphasis: {label: {show: true}}
-                        },
-                        data: [
-                            {$data}
-                        ]
-                    },
-                    {
                         name:'2011全国GDP对比',
-                        type:'pie',
-                        roseType : 'area',
+                        type:'bar',
                         tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
-                        center: [document.getElementById('main').offsetWidth - 300, 275],
-                        radius: [30, 180],
                         data:[
                             {$data}
                         ]
