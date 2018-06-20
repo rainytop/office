@@ -65,15 +65,44 @@ class Index extends Controller
         //array_multisort(array_column($content,$yearname.'年'),SORT_DESC,$content);
 
         $content= ArrayHelper::multiColumnSort($content,$yearname.'年',SORT_DESC);
-        dump($content);
+        //dump($content);
 
-        $singleYearData = $this->generateStatesAnnualProductsData($content, $yearname);
+        $provincesNames = $this->generateStatesAnnualProductsNames($content, $yearname);
+        $provincesValues = $this->generateStatesAnnualProductsValues($content, $yearname);
 
-        $data = $singleYearData;
-
-        $this->assign("data", $data);
+        $this->assign("provincesNames", $provincesNames);
+        $this->assign("data", $provincesValues);
         $this->assign("downFile", $excelData);
         return $this->fetch();
+    }
+
+    private function generateStatesAnnualProductsValues($statesData, $yearName = '2010')
+    {
+        $yearName .= "年";
+        $result = "";
+        foreach ($statesData as $provinceData) {
+            if (empty($result)) {
+                $result = $provinceData[$yearName];
+            } else {
+                $result .= ",". $provinceData[$yearName];
+            }
+        }
+
+        return $result;
+    }
+
+    private function generateStatesAnnualProductsNames($statesData)
+    {
+        $result = "";
+        foreach ($statesData as $provinceData) {
+            if (empty($result)) {
+                $result = "'".$provinceData['地区']."'";
+            } else {
+                $result .= ",'".$provinceData['地区']."'";
+            }
+        }
+
+        return $result;
     }
 
     private function generateStatesAnnualProductsData($statesData, $yearName = '2010')

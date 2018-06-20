@@ -63,10 +63,6 @@
 
         var targetUrl = "<?php echo url('nongye/index/totalproductsa'); ?>";
         $("#op_year").change(function () {
-            //alert(window.location.href);
-            //window.location= 'http://www.baidu.com';
-
-            //alert(this.value);
             window.location.href= targetUrl + "?yearname="+ this.value;
         });
     });
