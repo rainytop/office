@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{$title}</title>
     <script src="__STATIC__/common/js/echarts2/echarts.js"></script>
     <script src="__STATIC__/common/js/jquery.min.js"></script>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -60,8 +60,7 @@
             }
         });
 
-
-        var targetUrl = "<?php echo url('nongye/index/totalproductsb'); ?>";
+        var targetUrl = "<?php echo url(''); ?>";
         $("#op_year").change(function () {
             window.location.href= targetUrl + "?yearname="+ this.value;
         });
@@ -75,12 +74,12 @@
         }
     });
     // 使用
-    require(['echarts', 'echarts/chart/map','echarts/chart/bar',], function (ch) {
+    require(['echarts', 'echarts/chart/map','echarts/chart/pie','echarts/chart/bar',], function (ch) {
 // 基于准备好的dom，初始化echarts图表
             var myChart = ch.init(document.getElementById('main'));
             option = {
                 title: {
-                    text: '近年全国各省份粮食总产量分析（万吨）',
+                    text: '{$title}',
                     subtext: '数据来自国家统计局'
                 },
                 tooltip: {
@@ -104,27 +103,34 @@
                         dataView: {show: true, readOnly: false}
                     }
                 },
-                calculable : true,
-                xAxis : [
-                    {
-                        type : 'value',
-                        boundaryGap : [0, 0.01]
-                    }
-                ],
-                yAxis : [
-                    {
-                        type : 'category',
-                        data : [{$provincesNames}]
-                    }
-                ],
+
                 series: [
                     {
-                        name:'近年全国各省份粮食总产量分析（万吨）',
-                        type:'bar',
+                        name: '{$title}',
+                        type: 'map',
+                        mapType: 'china',
+                        mapLocation: {
+                            x: 'left'
+                        },
+                        selectedMode: 'single',
+                        itemStyle: {
+                            normal: {label: {show: true}},
+                            emphasis: {label: {show: true}}
+                        },
+                        data: [
+                            {$data}
+                        ]
+                    },
+                    {
+                        name:'{$title}',
+                        type:'pie',
+                        roseType : 'area',
                         tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
+                        center: [document.getElementById('main').offsetWidth - 300, 275],
+                        radius: [30, 180],
                         data:[
                             {$data}
                         ]
@@ -145,7 +151,7 @@
 
                     if (selected[name]) {
                         value= mapSeries.data[p].value;
-                        str+= name+ "] 粮食总产量为：[" + value+ "]";
+                        str+= name+ "] 数据为：[" + value+ "]";
                         document.getElementById('informationMessage').innerHTML = str;
                     }
                 }

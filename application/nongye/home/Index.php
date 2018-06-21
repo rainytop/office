@@ -21,18 +21,100 @@ class Index extends Controller
         return $this->fetch();
     }
 
-    public function foo()
-    {
-        dump(2222222222);
-    }
-
     /**
      *
      */
     public function totalproductsA($yearname = '2010')
     {
+        $this->assign('title', '近年全国各省份粮食总产量分析（万吨）');
+        return $this->modeMap($yearname, '2.provinces-total-products(2010-2012).xlsx');
+    }
+
+    public function totalproductsB($yearname = '2010')
+    {
+        $this->assign('title', '近年全国各省份粮食总产量分析（万吨）');
+        return $this->modeBar($yearname, '2.provinces-total-products(2010-2012).xlsx');
+    }
+
+    public function firstpercentA($yearname = '2010')
+    {
+        $this->assign('title', '全国第一产业情况分析');
+        return $this->modeMap($yearname, '4.provincesFirstPercent.xlsx');
+    }
+
+    public function firstpercentB($yearname = '2010')
+    {
+        $this->assign('title', '全国第一产业情况分析');
+        return $this->modeBar($yearname, '4.provincesFirstPercent.xlsx');
+    }
+
+
+    public function cottonA($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份棉花总产量对比分析');
+        return $this->modeMap($yearname, '3.cotton-products.xlsx');
+    }
+
+    public function cottonB($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份棉花总产量对比分析');
+        return $this->modeBar($yearname, '3.cotton-products.xlsx');
+    }
+
+
+    public function milkA($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份奶类总产量对比分析');
+        return $this->modeMap($yearname, '5.milk-products.xlsx');
+    }
+
+    public function milkB($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份奶类总产量对比分析');
+        return $this->modeBar($yearname, '5.milk-products.xlsx');
+    }
+
+    public function fruitA($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份水果总产量对比分析');
+        return $this->modeMap($yearname, '6.fruit-products.xlsx');
+    }
+
+    public function fruitB($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份水果总产量对比分析');
+        return $this->modeBar($yearname, '6.fruit-products.xlsx');
+    }
+
+    public function sugarA($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份糖料总产量对比分析');
+        return $this->modeMap($yearname, '7.sugar-products.xlsx');
+    }
+
+    public function sugarB($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份糖料总产量对比分析');
+        return $this->modeBar($yearname, '7.sugar-products.xlsx');
+    }
+
+
+    public function persondensityA($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份人口密度对比分析(人/平方公里)');
+        return $this->modeMap($yearname, '8.person-density.xlsx');
+    }
+
+    public function persondensityB($yearname = '2010')
+    {
+        $this->assign('title', '全国各省份人口密度对比分析(人/平方公里)');
+        return $this->modeBar($yearname, '8.person-density.xlsx');
+    }
+
+    private function modeMap($yearname, $datasourcefilename)
+    {
         $physicalRoot = PHYSICAL_ROOT_PATH;
-        $excelData = $physicalRoot . "\\public\\static\\agriculturedata\\2.provinces-total-products(2010-2012).xlsx";
+        $excelData = $physicalRoot . "\\public\\static\\agriculturedata\\" . $datasourcefilename;
 
         if (Request::instance()->isPost()) {
             WebHelper::download($excelData);
@@ -40,19 +122,19 @@ class Index extends Controller
         }
 
         $content = ExcelHelper::getSheetContent($excelData);
-        $singleYearData = $this->generateStatesAnnualProductsData($content, $yearname);
+        $singleYearData = $this->generateStatesAnnualData($content, $yearname);
 
         $data = $singleYearData;
 
         $this->assign("data", $data);
         $this->assign("downFile", $excelData);
-        return $this->fetch();
+        return $this->fetch('modeMap');
     }
 
-    public function totalproductsB($yearname = '2010')
+    private function modeBar($yearname, $datasourcefilename)
     {
         $physicalRoot = PHYSICAL_ROOT_PATH;
-        $excelData = $physicalRoot . "\\public\\static\\agriculturedata\\2.provinces-total-products(2010-2012).xlsx";
+        $excelData = $physicalRoot . "\\public\\static\\agriculturedata\\" . $datasourcefilename;
 
         if (Request::instance()->isPost()) {
             WebHelper::download($excelData);
@@ -60,23 +142,18 @@ class Index extends Controller
         }
 
         $content = ExcelHelper::getSheetContent($excelData);
-//        $dd=array_column($content,$yearname.'年');
-//        dump($dd);
-        //array_multisort(array_column($content,$yearname.'年'),SORT_DESC,$content);
+        $content = ArrayHelper::multiColumnSort($content, $yearname . '年', SORT_DESC);
 
-        $content= ArrayHelper::multiColumnSort($content,$yearname.'年',SORT_DESC);
-        //dump($content);
-
-        $provincesNames = $this->generateStatesAnnualProductsNames($content, $yearname);
-        $provincesValues = $this->generateStatesAnnualProductsValues($content, $yearname);
+        $provincesNames = $this->generateStatesAnnualNames($content, $yearname);
+        $provincesValues = $this->generateStatesAnnualValues($content, $yearname);
 
         $this->assign("provincesNames", $provincesNames);
         $this->assign("data", $provincesValues);
         $this->assign("downFile", $excelData);
-        return $this->fetch();
+        return $this->fetch('modeBar');
     }
 
-    private function generateStatesAnnualProductsValues($statesData, $yearName = '2010')
+    private function generateStatesAnnualValues($statesData, $yearName = '2010')
     {
         $yearName .= "年";
         $result = "";
@@ -84,43 +161,28 @@ class Index extends Controller
             if (empty($result)) {
                 $result = $provinceData[$yearName];
             } else {
-                $result .= ",". $provinceData[$yearName];
+                $result .= "," . $provinceData[$yearName];
             }
         }
 
         return $result;
     }
 
-    private function generateStatesAnnualProductsNames($statesData)
+    private function generateStatesAnnualNames($statesData)
     {
         $result = "";
         foreach ($statesData as $provinceData) {
             if (empty($result)) {
-                $result = "'".$provinceData['地区']."'";
+                $result = "'" . $provinceData['地区'] . "'";
             } else {
-                $result .= ",'".$provinceData['地区']."'";
+                $result .= ",'" . $provinceData['地区'] . "'";
             }
         }
 
         return $result;
     }
 
-    private function generateStatesAnnualProductsData($statesData, $yearName = '2010')
-    {
-        $yearName .= "年";
-        $result = "";
-        foreach ($statesData as $provinceData) {
-            if (empty($result)) {
-                $result = "{name: '" . $provinceData['地区'] . "', value: " . $provinceData[$yearName] . "}";
-            } else {
-                $result .= ",\r\n{name: '" . $provinceData['地区'] . "', value: " . $provinceData[$yearName] . "}";
-            }
-        }
-
-        return $result;
-    }
-
-    private function generateStatesAnnualProductsSortedData($statesData, $yearName = '2010')
+    private function generateStatesAnnualData($statesData, $yearName = '2010')
     {
         $yearName .= "年";
         $result = "";
@@ -132,7 +194,20 @@ class Index extends Controller
             }
         }
 
+        return $result;
+    }
 
+    private function generateStatesAnnualSortedData($statesData, $yearName = '2010')
+    {
+        $yearName .= "年";
+        $result = "";
+        foreach ($statesData as $provinceData) {
+            if (empty($result)) {
+                $result = "{name: '" . $provinceData['地区'] . "', value: " . $provinceData[$yearName] . "}";
+            } else {
+                $result .= ",\r\n{name: '" . $provinceData['地区'] . "', value: " . $provinceData[$yearName] . "}";
+            }
+        }
 
         return $result;
     }
