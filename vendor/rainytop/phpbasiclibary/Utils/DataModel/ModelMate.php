@@ -2,6 +2,8 @@
 
 namespace Hiland\Utils\DataModel;
 
+use think\Config;
+use think\Db;
 use Think\Model;
 
 /**
@@ -11,7 +13,8 @@ use Think\Model;
  */
 class ModelMate
 {
-    var $model;
+    var $modelObject;
+    var $queryObject;
 
     /**
      * 构造函数
@@ -23,10 +26,24 @@ class ModelMate
     public function __construct($model)
     {
         if (is_string($model)) {
-            $this->model = M($model);
+            $thinkVersion= $this->getThinkVersion();
+            if($thinkVersion<5){
+                $this->modelObject= $this->queryObject = M($model);
+            }else{
+                $this->modelObject= new CommonModel($model);
+                $this->queryObject = Db::name($model);
+            }
         } else {
-            $this->model = $model;
+            $this->modelObject = $model;
         }
+    }
+
+    /**
+     * 获取当前使用thinkphp的版本
+     * @return int
+     */
+    private function getThinkVersion(){
+        return (int)THINK_VERSION;
     }
 
     /**
@@ -40,7 +57,7 @@ class ModelMate
      */
     public function get($key, $keyName = 'id')
     {
-        return self::getModel_Get()->find($key, $keyName);
+        return self::getModel_Get($key, $keyName)->find();
     }
 
     /**
@@ -62,7 +79,7 @@ class ModelMate
      */
     protected function getModel_Where($condition = array())
     {
-        return $this->model->where($condition);
+        return $this->queryObject->where($condition);
     }
 
     /**
@@ -168,7 +185,14 @@ class ModelMate
     {
         $condition[$keyName] = $key;
         $model = $this->getModel_Where($condition);
-        return $model->getField($feildName);
+
+        $thinkVersion= $this->getThinkVersion();
+        if($thinkVersion<5){
+            return $model->getField($feildName);
+        }else{
+            $model= $model->find();
+            return $model[$feildName];
+        }
     }
 
     /**
@@ -194,7 +218,15 @@ class ModelMate
      */
     public function queryValue($searcher, $whereClause = null)
     {
-        $tableName = $this->model->getTableName();
+        $tableName='';
+
+        $thinkVersion= $this->getThinkVersion();
+        if($thinkVersion<5){
+            $tableName = $this->modelObject->getTableName();
+        }else{
+            $tableName= $this->queryObject->getTable();
+        }
+
         $sql = "SELECT $searcher FROM $tableName";
         if (!empty($whereClause)) {
             $sql .= ' where ' . $whereClause;
@@ -216,21 +248,24 @@ class ModelMate
      */
     public function query($sql)
     {
-        $tableName = '';
+        $tableName='';
+
+        $thinkVersion= $this->getThinkVersion();
+        if($thinkVersion<5){
+            $tableName = $this->modelObject->getTableName();
+        }else{
+            $tableName= $this->queryObject->getTable();
+        }
+
         if (strstr($sql, '__MODELTABLENAME__')) {
-            $tableName = $this->model->getTableName();
             $sql = str_replace('__MODELTABLENAME__', $tableName, $sql);
         }
 
         if (strstr($sql, '__MTN__')) {
-            if ($tableName == '') {
-                $tableName = $this->model->getTableName();
-            }
-
             $sql = str_replace('__MTN__', $tableName, $sql);
         }
 
-        return $this->model->query($sql);
+        return $this->queryObject->query($sql);
     }
 
     /**
@@ -241,7 +276,7 @@ class ModelMate
      */
     public function execute($sql, $parse = false)
     {
-        return $this->model->execute($sql, $parse);
+        return $this->queryObject->execute($sql, $parse);
     }
 
     /**
@@ -257,7 +292,7 @@ class ModelMate
     {
         if (empty($data)) {
             /* 获取数据对象 */
-            $data = $this->model->create($_POST);
+            $data = $this->modelObject->create($_POST);
         }
 
         if (empty($data)) {
@@ -267,21 +302,32 @@ class ModelMate
         $recordID = 0;
         $isAddOperation = true;
 
+        $thinkVersion= $this->getThinkVersion();
         /* 添加或新增基础内容 */
         if (empty($data[$keyName])) { // 新增数据
-
-            $recordID = $this->model->data($data)->add(); // 添加基础内容
+            if($thinkVersion<5){
+                $recordID = $this->modelObject->data($data)->add(); // 添加基础内容
+            }else{
+                $recordID= $this->queryObject->insert($data,false,true);
+                $recordID= (int)$recordID;
+            }
 
             if (!$recordID) {
-                $this->model->setError('新增数据出错！');
+                //$this->model->setError('新增数据出错！');
                 return false;
             }
         } else { // 更新数据
             $recordID = $data[$keyName];
             $isAddOperation = false;
-            $status = $this->model->data($data)->save(); // 更新基础内容
+
+            if($thinkVersion<5){
+                $status = $this->modelObject->data($data)->save(); // 更新基础内容
+            }else{
+                $status= $this->queryObject->update($data);
+            }
+
             if (false === $status) {
-                $this->model->setError('更新数据出错！');
+                //$this->model->setError('更新数据出错！');
                 return false;
             }
         }
@@ -324,7 +370,7 @@ class ModelMate
         }
 
         $condition = array("$keyName" => array("in", $keys));
-        return $this->model->where($condition)->data($data)->save();
+        return $this->modelObject->where($condition)->data($data)->save();
     }
 
     /**
@@ -336,7 +382,7 @@ class ModelMate
      */
     public function setInc($condition, $field, $step = 1, $lazyTime = 0)
     {
-        return $this->model->where($condition)->setInc($field, $step, $lazyTime);
+        return $this->modelObject->where($condition)->setInc($field, $step, $lazyTime);
     }
 
     /**
@@ -348,6 +394,6 @@ class ModelMate
      */
     public function setDec($condition, $field, $step = 1, $lazyTime = 0)
     {
-        return $this->model->where($condition)->setDec($field, $step, $lazyTime);
+        return $this->modelObject->where($condition)->setDec($field, $step, $lazyTime);
     }
 }

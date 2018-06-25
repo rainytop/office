@@ -986,6 +986,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
             return false;
         }
         $pk = $this->getPk();
+        //dump($this->isUpdate);
         if ($this->isUpdate) {
             // 自动更新
             $this->autoCompleteData($this->update);

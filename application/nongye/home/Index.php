@@ -9,6 +9,9 @@
 namespace app\nongye\home;
 
 use Hiland\Utils\Data\ArrayHelper;
+use Hiland\Utils\Data\CodingHelper;
+use Hiland\Utils\Data\StringHelper;
+use Hiland\Utils\DataModel\ModelMate;
 use Hiland\Utils\Office\ExcelHelper;
 use Hiland\Utils\Web\WebHelper;
 use think\Controller;
@@ -20,6 +23,90 @@ class Index extends Controller
     {
         return $this->fetch();
     }
+
+    public function cleanData(){
+        $mate= new ModelMate('nongye_excellentproduct');
+
+        $all= $mate->select("","id asc",0,0);
+
+        $lastProvince= '';
+        $lastArea='';
+        $lastBrandname= '';
+
+        foreach ($all as $item){
+            $currentProvince= $item['province'];
+            if($currentProvince){
+                $lastProvince= $currentProvince;
+            }else{
+                $currentProvince= $lastProvince;
+                $item['province']= $lastProvince;
+            }
+
+            $currentArea= $item['area'];
+            if($currentArea){
+                $lastArea= $currentArea;
+            }else{
+                $currentArea= $lastArea;
+                $item['area']= $lastArea;
+            }
+
+            $currentBrandname= $item['brandname'];
+            if($currentBrandname){
+                $lastBrandname= $currentBrandname;
+            }else{
+                $currentBrandname= $lastBrandname;
+                $item['brandname']= $lastBrandname;
+            }
+
+            $currentProduct= '';
+            $allProducts= ['大米','蚕豆','小米','小豆','绿豆','红薯','玉米','甘薯','荞麦','苦荞','黄米','花生','黄豆','番薯干','贡米','芝麻','地瓜','薏米','乌豆','红豆','香米','马铃薯'];
+
+            foreach ($allProducts as $product){
+                if(StringHelper::isContains($currentBrandname,$product)){
+                    $currentProduct= $product;
+                    $item['productname']= $product;
+                    break;
+                }
+            }
+            $mate->interact($item);
+        }
+    }
+
+    public function excellentProduct(){
+        $mate= new ModelMate('nongye_excellentproduct');
+        $allData= $mate->select();
+        $allCompanyCount= count($allData);
+        $allProducts= ArrayHelper::getColumnValues($allData,"productname");
+        $allProducts= array_unique($allProducts);
+        $allProducts= array_filter($allProducts,function ($a){
+            return !empty($a);
+        });
+
+
+        array_unshift($allProducts,'请选择...');
+
+        $productNameSelected= Request::instance()->param('productname');
+        $productNameSelected= CodingHelper:: unescape($productNameSelected);
+        $province4product=[];
+        if($productNameSelected){
+            $province4product= array_filter($allData,function ($element){
+                $productNameSelected= Request::instance()->param('productname');
+                $productNameSelected= CodingHelper:: unescape($productNameSelected);
+                if($element['productname']== $productNameSelected){
+                    //dump ($element['province']);
+                    return $element;
+                }
+            });
+        }
+
+
+        //$province4product= ['山东','北京','新疆'];
+
+        $this->assign('allProducts',$allProducts);
+        $this->assign('province4product',$province4product);
+        return $this->fetch();
+    }
+
 
     /**
      *

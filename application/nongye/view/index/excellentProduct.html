@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快递派送地区及收费情况</title>
+    <!--<script src="__STATIC__/common/js/echarts.min.js"></script>-->
+    <script src="__STATIC__/common/js/echarts2/echarts.js"></script>
+    <script src="__STATIC__/common/js/jquery.min.js"></script>
+</head>
+<body>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<div id="message"></div>
+选择农产品<select id="op_productName">
+
+    {volist name = "allProducts" id = "vo1"}
+    <option name="{$vo1}" value="{$vo1}">{$vo1}</option>
+    {/volist}
+
+</select> <a href="index.html">首页</a>
+<script type="text/javascript">
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+
+    // 路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    // 使用
+    require(['echarts', 'echarts/chart/map'], function (ch) {
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = ch.init(document.getElementById('main'));
+        option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b}'
+            },
+            title: {
+                text: '产品生产省份',
+                subtext: '数据来源国家统计局',
+                x: 'center'
+            },
+            dataRange: {
+                min: 0,
+                max: 10000,
+                x: 'left',
+                y: 'bottom',
+                text: ['高', '低'],           // 文本，默认为数值文本
+                calculable: true
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: ['产品生产省份']
+            },
+            series: [
+                {
+                    name: '产品生产省份',
+                    type: 'map',
+                    mapType: 'china',
+                    selectedMode: 'single',
+                    itemStyle: {
+                        normal: {label: {show: true}},
+                        emphasis: {label: {show: true}}
+                    },
+                    data: []
+                },
+                {
+                    name: '产品生产省份',
+                    type:
+                        'map',
+                    mapType:
+                        'china',
+                    itemStyle:
+                        {
+                            normal: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                            ,
+                            emphasis: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                        }
+                    ,
+                    data: [
+                        {volist name = "province4product" id = "vo2"}
+                        {name: '{$vo2.province}', value: 8000   },
+        {/volist}
+        ]
+        }
+            ]
+        }
+                    ;
+                    var ecConfig = require('echarts/config');
+
+                    myChart.on(ecConfig.EVENT.MAP_SELECTED, function (param) {
+                        var productname= getUrlParms('productname');
+                        var selected = param.selected;
+                        var str = '当前选择： ';
+                        for (var p in selected) {
+                            if (selected[p]) {
+                                str += p + ' ';
+                                //$("#message").html(str);
+                                var deliverFeeUrl = "<?php echo url('nongye/api/getCompanys'); ?>";
+                                deliverFeeUrl += '?province=' + encodeURIComponent(p)+'&productName='+ encodeURIComponent(productname);
+                                $.ajax({
+                                    url: deliverFeeUrl,
+                                    success: function (result) {
+                                        //document.getElementById('message').innerHTML = result;
+                                        $("#message").html('ok.' + result);
+                                    },
+                                    error: function (xhr, textStatus) {
+                                        $("#message").html('错误' + xhr.responseText);
+                                        console.log(xhr);
+                                    },
+                                    complete: function (result) {
+                                        //$("#message").html('完成'+ result);
+                                    }
+                                });
+                            }
+                        }
+
+                    })
+                    // 为echarts对象加载数据
+                    myChart.setOption(option);
+                });
+</script>
+<script type="text/javascript">
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+
+    $(document).ready(function () {
+        var productname= getUrlParms('productname');
+
+        $("#op_productName").children("option").each(function(){
+            var temp_value = $(this).val();
+            if(temp_value == productname){
+                $(this).attr("selected","selected");
+            }
+        });
+
+        var targetUrl = "<?php echo url(''); ?>";
+        $("#op_productName").change(function () {
+            window.location.href= targetUrl + "?productname="+ escape(this.value);
+        });
+    });
+</script>
+</body>
+</html>

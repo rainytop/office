@@ -399,11 +399,30 @@ class ArrayHelper
     ["2012年"] => float(4511.4)
     [""] => NULL
     }
-    }
+     }
 
      */
     public static function multiColumnSort($array,$columnName,$sortType=SORT_ASC){
         array_multisort(array_column($array,$columnName),$sortType,$array);
         return $array;
+    }
+
+    /**
+     * 获取数组某一列所有的值
+     * @param $array
+     * @param $columnName
+     * @return array
+     */
+    public static function getColumnValues($array,$columnName){
+        return array_column($array,$columnName);
+    }
+
+    /**
+     * 得到数组的长度
+     * @param $array
+     * @return int
+     */
+    public static function getLength($array){
+        return count($array);
     }
 }
