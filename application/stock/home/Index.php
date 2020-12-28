@@ -2,6 +2,7 @@
 
 namespace app\stock\home;
 
+use Hiland\Utils\Data\StringHelper;
 use Hiland\Utils\DataModel\ModelMate;
 use think\Controller;
 
@@ -12,7 +13,9 @@ class Index extends Controller
         $mate4Setting = new ModelMate("stock_setting");
         $settings = $mate4Setting->get(2);
         $setting_date = $settings["settingvalue"];
-        $this->assign("setting_date", $setting_date);
+
+        $setting_date_fixed= StringHelper::getStringBeforeSeperator($setting_date," ");
+        $this->assign("setting_date", $setting_date_fixed);
 
 
         $mate4brand = new ModelMate("stock_brand");
@@ -31,9 +34,9 @@ class Index extends Controller
             $listsFixed[] = $item;
         }
 
-        //dump($listsFixed);
+        $allStockCount= count($listsFixed);
         $this->assign("lists", $listsFixed);
-        $this->assign("test", "test");
+        $this->assign("allStockCount", $allStockCount);
         return $this->fetch();
     }
 }
