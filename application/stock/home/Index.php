@@ -21,7 +21,7 @@ class Index extends Controller
         $mate4brand = new ModelMate("stock_brand");
         $condition = array();
         $condition["sdate"] = $setting_date;
-        $lists = $mate4brand->select($condition);
+        $lists = $mate4brand->select($condition,"scode desc");
         $listsFixed = array();
         foreach ($lists as $item) {
             $prefix = "sz";
