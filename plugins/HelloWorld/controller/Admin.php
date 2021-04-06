@@ -212,7 +212,7 @@ class Admin extends Common
     public function testPage()
     {
         // 1.使用默认的方法渲染模板，必须指定完整的模板文件名（包括模板后缀）
-//        return $this->fetch(config('plugin_path'). 'HelloWorld/view/index.html');
+//        return $this->fetch(config('plugin_path'). 'HelloWorld/view/ma1.html');
 
         // 2.使用已封装好的快捷方法，该方法只用于加载插件模板
         // 如果不指定模板名称，则自动加载插件view目录下与当前方法名一致的模板

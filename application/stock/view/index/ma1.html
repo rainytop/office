@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MA推荐股票信息</title>
+    <style>
+        img[src=""], img:not([src]) {
+            opacity: 0;
+        }
+    </style>
+    <script src="__STATIC__/common/js/jquery.min.js"></script>
+</head>
+
+<h1>MA推荐股票信息[共{$allStockCount}支] ({$setting_date})</h1>
+<!-- 动态显示加载图片元素块 -->
+<img id="s" src="" style="position: absolute; left: -400px; top: -400px;">
+{volist name="lists" id="item"}
+<div>
+    <a href="https://finance.sina.com.cn/realstock/company/{$item['scodefixed']}/nc.shtml"
+       codefixed="{$item['scodefixed']}" target="targetStock" onmouseover="on('{$item[\'scodefixed\']}')"
+       onmouseout="off()">{$item["sname"]}({$item["scode"]})</a>
+</div>
+{/volist}
+
+<script type="text/javascript">
+    /**
+     * 显示图片详情，鼠标移入时执行
+     */
+    function on(productImg) {
+        if (productImg == "undefined" || productImg == null || productImg == "") {
+            return;
+        }
+        //给图片容器赋值路径
+        $("#s").attr("src", "http://image.sinajs.cn/newchart/daily/n/" + productImg + ".gif");
+        $(document).mousemove(function (e) {
+            $("#s").css("position", "absolute").css("left", e.pageX + 1 + "px").css("top", e.pageY + 1 + "px");
+        })
+    }
+
+    /**
+     * 关闭图片，当鼠标移出时执行
+     */
+    function off() {
+        $("#s").attr("src", "");
+        $(document).mousemove(function (e) {
+            $("#s").css("position", "absolute").css("left", "-400px").css("top", "-400px");
+        })
+    }
+</script>
+</body>
+</html>
